@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,16 +28,55 @@ namespace WPF_C_WinPROC
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (HelloButton.IsChecked == true)
+            if (sender.Equals(ExitButton))
             {
-                MessageBox.Show("Hello.");
+                Environment.Exit(1);
             }
-            else if (GoodbyeButton.IsChecked == true)
+            else if (sender.Equals(DisplayButton))
             {
-                MessageBox.Show("Goodbye.");
+                if (HelloButton.IsChecked == true)
+                {
+                    const string message = "Hello";
+                    const string caption = "Message";
+                    MessageBox.Show(message, caption, MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+                else if (GoodbyeButton.IsChecked == true)
+                {
+                    const string message = "Goodbye";
+                    const string caption = "Message";
+                    MessageBox.Show(message, caption, MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
             }
+            else if (sender.Equals(UserInputButton))
+            {
+                const string message = "Hello user!";
+                const string caption = "Hello!";
+                MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Exclamation,
+                    MessageBoxResult.OK);
+            }
+
 
         }
-    }
 
+        private void AppExit_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (sender.Equals(AppExit))
+            {
+                Environment.Exit(1);
+            }
+            //throw new NotImplementedException();
+        }
+
+        private void MenuItem_File_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void MenuItem_Help_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

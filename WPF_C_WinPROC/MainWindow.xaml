@@ -5,17 +5,76 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_C_WinPROC"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="WPF C# Application" Height="450" Width="800">
+
+    <!-- Sets the origin for all transforms to be rendered -->
+    <Grid RenderTransformOrigin="0.5,0.5" Height="434" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="416.038"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock HorizontalAlignment="Left" Margin="5,29,0,0" TextWrapping="Wrap" Text="Select a message option and then choose the Display button." VerticalAlignment="Top" Grid.Row="1"/>
-        <RadioButton x:Name="HelloButton" Content="Hello" IsChecked="True" HorizontalAlignment="Left" Margin="297,143,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <RadioButton x:Name="GoodbyeButton" Content="Goodbye" HorizontalAlignment="Left" Margin="488,143,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <Button Content="Display" HorizontalAlignment="Left" Margin="377,252,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Row="1"/>
-        <Image Grid.RowSpan="2"></Image>
+        <GridSplitter Grid.Column="0"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch"
+                      Background="White" 
+                      ShowsPreview="True"
+                      Width="5"
+        />
+
+        <!-- Menu at the top of the application -->
+        <StackPanel Grid.Row="1" VerticalAlignment="Top">
+            <Menu Width="Auto" Height="20">
+                <MenuItem Header="_File" Click="MenuItem_File_Click">
+                    <MenuItem x:Name="AppExit" Header="E_xit" HorizontalAlignment="Left" Width="140" Click="AppExit_OnClick"/>
+                </MenuItem>
+                <MenuItem Header="_Tools">
+                    <MenuItem x:Name="Options" Header="_Options" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+                <MenuItem Header="_Help" Click="MenuItem_Help_Click">
+                    <MenuItem x:Name="About" Header="_About" HorizontalAlignment="Left" Width="140"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+
+        <!-- All children of the main window -->
+        <TextBlock HorizontalAlignment="Left" Margin="6,37,0,0" TextWrapping="Wrap" Text="Please agree to the terms and conditions." VerticalAlignment="Top" Grid.Row="1"/>
+
+        <Border BorderThickness="0" BorderBrush="Black" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left" Margin="6,44,0,0" TextWrapping="Wrap"
+                    TextAlignment="Left" VerticalAlignment="Top" Height="254" Width="443" xml:space="preserve" >
+                    <Run/><LineBreak/><Run Text="&quot;This program is free software: you can redistribute it and/or modify&#xA;it under the terms of the GNU General Public License as published by&#xA;the Free Software Foundation, either version 3 of the License, or&#xA;(at your option) any later version.&#xA;&#xA;This program is distributed in the hope that it will be useful,&#xA;but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA;GNU General Public License for more d"/><Run Text="etails.&#xA;&#xA;You should have received a copy of the GNU General Public License&#xA;along with this program.  If not, see https://www.gnu.org/licenses/.&quot;&#xA;            &#xA;        "/>
+            </TextBlock>
+        </Border>
+
+        <RadioButton x:Name="HelloButton" Content="Hello" IsChecked="True" HorizontalAlignment="Center" Margin="0,391,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <RadioButton x:Name="GoodbyeButton" Content="Goodbye" HorizontalAlignment="Left" Margin="465,391,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Name="DisplayButton" Content="Display" HorizontalAlignment="Left" Margin="567,386,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" Grid.Row="1"/>
+        <Button Name="ExitButton"  Content="Exit" HorizontalAlignment="Left" Margin="700,386,0,0" VerticalAlignment="Top" Width="75" 
+                Click="Button_Click" Grid.Row="1" Background="DarkRed"></Button>
+
+        <!-- TODO Show what the user inputted in the message box -->
+
+            <StackPanel Grid.Row="1">
+            <TextBlock Text="What's your name?"/>
+            <StackPanel Orientation="Horizontal" Margin="15,370,0,20">
+
+                <TextBox Name="UserInput" Width="100"></TextBox>
+                <Border>
+                    <Button Name="UserInputButton" Content="Hello button" Click="Button_Click" Height="20" Width="71"/>
+                </Border>
+                <!--="Enter your name:" PlaceholderText="Name"
+                         Width="300" HorizontalAlignment="Left"/>-->
+            </StackPanel>
+            <TextBlock x:Name="GreetingOutput"/>
+        </StackPanel>
+
+        <!-- TODO Find a place to test images and test with uploading one from the user-->
+            <!--
+        <Image Margin="57,-55,221,-100" Grid.Column="0" Grid.RowSpan="2">
+            <Image.Source>
+                <TransformedBitmap Source="/Images/image1.jpg"></TransformedBitmap>
+            </Image.Source>
+        </Image>
+        -->
     </Grid>
 </Window>
